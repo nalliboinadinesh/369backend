@@ -8,6 +8,7 @@ import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const EIGHT_MINUTES = 8 * 60 * 1000;
 
 connectionDB();
 
@@ -25,4 +26,8 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+
+  setInterval(() => {
+    console.log(`Cron time: ${new Date().toISOString()}`);
+  }, EIGHT_MINUTES);
 });
